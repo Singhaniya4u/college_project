@@ -33,6 +33,7 @@
     <div>
         <a href="#">Home</a>
         <a href="{{route('login.index')}}">Login</a>
+        <a href="{{route('login.index')}}">Student</a>
         <a href="#">Contact</a>
     </div>
 </div>

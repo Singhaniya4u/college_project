@@ -15,11 +15,12 @@ class AdminController extends Controller
      */
     public function index($admin_id)
     {
-        $admin = Admin::find($admin_id);
-        if (!$admin) {
-            abort(404, 'Admin not found');
-        }
-        return view('admins.dashboard', ['admin' => $admin]);
+        $admin = Admin::where('admin_id', $admin_id)->first();
+        
+        // if (!$admin) {
+        //     abort(404, 'Admin not found');
+        // }
+        return view('admins.dashboard', compact('admin'));
     }
 
 

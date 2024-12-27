@@ -67,11 +67,11 @@ class StudentController extends Controller
 
     public function login(Request $request)
     {   
-        $student_id = $request->input('student_id');
+        $roll_number = $request->input('roll_number');
         $password = $request->input('password');
-        $original_password = DB::table('students')->where('admin_id', $student_id)->get('password');
+        $original_password = DB::table('students')->where('roll_number', $roll_number)->get('password');
         if ($password == $original_password[0]->password) {
-            return redirect('admins')->with('success', 'Logged in successfully!');
+            return redirect('students')->with('success', 'Logged in successfully!');
         }
         return back()->withErrors(['Password or username is not correct']);
     }
