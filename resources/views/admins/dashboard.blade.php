@@ -13,8 +13,8 @@
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-light navbar-white">
         <div class="container">
-            <a href="index3.html" class="navbar-brand">
-                <img src="images-admin/admin-profile.jpg" height="50px" width="50px" alt="Admin-Image"
+            <a href="{{route('admins.dashboard',[$admin->admin_id])}}" class="navbar-brand">
+                <img src="/images-admin/college.jpg" height="50px" width="50px" alt="Admin-Image"
                      class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">West Side</span>
             </a>
@@ -48,55 +48,20 @@
                     </div>
                 </div>
             </form>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="fas fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">3</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <div class="media">
-                                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header">15 Notifications</span>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
-            </ul>
         </div>
     </nav>
 
     <!-- Sidebar -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <a href="index3.html" class="brand-link">
-            <img src="images-admin/admin-profile.jpg" alt="Admin-Image" class="brand-image img-circle elevation-3"
+        <a href="#" class="brand-link">
+            <img src="/images-admin/{{$admin->picture}}" alt="Admin-Image" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">West Side</span>
         </a>
         <div class="sidebar">
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="images-admin/{{$admin->picture}}" class="img-circle elevation-2" alt="Admin Image">
+                    <img src="/images-admin/{{$admin->picture}}" height="50px" width="50px" class="img-circle elevation-2" alt="Admin Image">
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">{{ $admin->admin_name }}</a>
@@ -106,13 +71,13 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
                     <li class="nav-item">
                         <a href="{{route('student.index')}}" class="nav-link" id="load-students">
-                            <i class="far fa-circle nav-icon"></i>
+                            <i class="far nav-icon"></i>
                             <p>Students</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link" id="load-teachers">
-                            <i class="far fa-circle nav-icon"></i>
+                        <a href="{{route('student.index')}}" class="nav-link" id="load-teachers">
+                            <i class="far nav-icon"></i>
                             <p>Teachers</p>
                         </a>
                     </li>
@@ -125,7 +90,6 @@
     <div class="content-wrapper">
         <div class="content">
             <div class="container-fluid" id="content-area">
-                <!-- Dynamic content will be loaded here -->
                 <!-- Dynamic content will be loaded here -->
             </div>
         </div>
@@ -151,7 +115,7 @@
         $('#load-teachers').on('click', function (e) {
             e.preventDefault();
             $.ajax({
-                url: 'teacher.html',
+                url: '{{route('teacher.index')}}',
                 method: 'GET',
                 success: function (data) {
                     $('#content-area').html(data);

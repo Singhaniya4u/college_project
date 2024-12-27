@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
 use App\Models\Teacher;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -13,7 +15,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teacher = Teacher::all(); // Fetch all students using Eloquent
+        return view('teacher.index', compact('teacher'));
     }
 
     /**
@@ -21,7 +24,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('teacher.create');
     }
 
     /**
@@ -29,7 +32,13 @@ class TeacherController extends Controller
      */
     public function store(StoreTeacherRequest $request)
     {
-        //
+        try {
+            $validated = $request->validated();
+            Teacher::create($validated);
+            return redirect()->route('teacher.index')->with('success', 'Teacher created successfully!');
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors('An error occurred: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -37,7 +46,7 @@ class TeacherController extends Controller
      */
     public function show(Teacher $teacher)
     {
-        //
+        return view('teacher.show', compact('teacher'));
     }
 
     /**
@@ -45,7 +54,8 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        $teacher = Teacher::find($teacher);
+        return view('teacher.edit', compact('teacher'));
     }
 
     /**
@@ -53,7 +63,9 @@ class TeacherController extends Controller
      */
     public function update(UpdateTeacherRequest $request, Teacher $teacher)
     {
-        //
+        $validated = $request->validated();
+        $teacher->update($validated);
+        return redirect()->route('teacher.index')->with('success', 'Teacher updated successfully!');
     }
 
     /**
@@ -61,6 +73,7 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->delete();
+        return redirect()->route('teacher.index')->with('success', 'Teacher deleted successfully!');
     }
 }

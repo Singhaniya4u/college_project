@@ -11,7 +11,7 @@ class UpdateTeacherRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateTeacherRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'teacher_id'=>'string',
+            'name'=>'string',
+            'email'=>'string',
+            'subject'=>'string',
+            'branch'=>'string',
         ];
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,8 @@ Route::get('/admin-login', function(){
 Route::get('admins/{admin_id}', [AdminController::class, 'index'])->name('admins.dashboard');
 
 
-
+// Teacher
+Route::resource('teacher', TeacherController::class);
 
 Route::get('home', function(){
     return view('home_page');
