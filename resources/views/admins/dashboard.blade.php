@@ -126,6 +126,7 @@
         <div class="content">
             <div class="container-fluid" id="content-area">
                 <!-- Dynamic content will be loaded here -->
+                <!-- Dynamic content will be loaded here -->
             </div>
         </div>
     </div>
